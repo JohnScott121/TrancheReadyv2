@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FAQ — TrancheReady</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/style.css?v=1.1">
+  <script>document.documentElement.classList.remove('no-js');</script>
+  <script>
+    window.APP_HOST_OVERRIDE="https://app.trancheready.com";
+    window.APP_API_HOST_OVERRIDE="https://app.trancheready.com";
+  </script>
+</head>
+<body>
+  <header class="site-header" data-glass>
+    <div class="container nav">
+      <a href="/" class="brand"><span class="brand-name">TrancheReady</span></a>
+      <nav class="primary-nav"><ul><li><a href="/">Home</a></li><li><a href="payment.html">Pricing</a></li></ul></nav>
+      <div class="nav-actions"><a data-app-link class="btn primary" href="#">Open app</a></div>
+    </div>
+  </header>
+  <main id="main" class="section">
+    <div class="container">
+      <header class="section-head"><h1>Frequently Asked Questions</h1></header>
+      <div class="faq">
+        <details open><summary>Do I need to integrate my systems?</summary><div>No. CSV in → ZIP out.</div></details>
+        <details><summary>What’s in the evidence pack?</summary><div>Clients, Transactions, Cases, Program.html, and a manifest with SHA-256 hashes and Ed25519 signature.</div></details>
+        <details><summary>Is AI required?</summary><div>No. Narratives are optional if an API key is present.</div></details>
+        <details><summary>How is data protected?</summary><div>Memory uploads, strict headers, rate limiting, and short-lived verify links.</div></details>
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer"><div class="container footer-grid"><a href="/" class="brand foot"><span class="brand-name">TrancheReady</span></a><nav class="foot-links"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></nav><small class="copy">&copy; <span id="year"></span> TrancheReady Pty Ltd</small></div></footer>
+  <script src="assets/main.js" defer></script>
+</body>
+</html>
