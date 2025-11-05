@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TrancheReady — App</title>
+  <link rel="stylesheet" href="/public/style.css">
+</head>
+<body>
+<header class="app-head"><h1>TrancheReady</h1><nav><a href="/">App</a> · <a href="/healthz">Health</a></nav></header>
+<main class="app-main">
+  <section class="card">
+    <h2>Upload your CSVs</h2>
+    <p>Clients.csv and Transactions.csv. Data stays in memory.</p>
+    <form id="uform">
+      <label>Clients.csv <input required type="file" name="clients" accept=".csv"></label>
+      <label>Transactions.csv <input required type="file" name="transactions" accept=".csv"></label>
+      <button class="btn primary" type="submit">Process</button>
+    </form>
+    <p id="umsg" class="muted"></p>
+  </section>
+
+  <section class="card">
+    <h2>Results</h2>
+    <pre id="result" class="pre"></pre>
+    <div id="links"></div>
+  </section>
+</main>
+<script src="/public/app.js" defer></script>
+</body>
+</html>
