@@ -1,9 +1,13 @@
 {
   "name": "trancheready-app",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "type": "module",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "start:prod": "NODE_ENV=production node server.js",
+    "lint": "echo \"(optional) add eslint here\" && exit 0",
+    "format": "node -e \"console.log('format placeholder')\"",
+    "test": "node -e \"console.log('tests placeholder')\""
   },
   "dependencies": {
     "archiver": "^7.0.1",
@@ -16,7 +20,11 @@
     "express-rate-limit": "^7.1.5",
     "helmet": "^7.1.0",
     "multer": "^1.4.5-lts.1",
+    "openapi3-ts": "^4.4.0",
+    "pino": "^9.4.0",
+    "pino-http": "^10.3.0",
     "stripe": "^16.6.0",
+    "swagger-ui-express": "^5.0.1",
     "tweetnacl": "^1.0.3",
     "zod": "^3.23.8",
     "openai": "^4.67.3"
