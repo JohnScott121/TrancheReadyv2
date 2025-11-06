@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Verify Evidence — TrancheReady</title>
+  <link rel="icon" href="/public/logo.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/public/style.css">
 </head>
 <body>
@@ -18,7 +19,7 @@
 <main class="container page">
   <section class="card">
     <h1 class="card-title">Evidence manifest</h1>
-    <p class="muted">Hashes (SHA-256) and optional Ed25519 signature for integrity verification.</p>
+    <p class="muted">SHA-256 hashes and optional Ed25519 signature.</p>
 
     <div class="grid two">
       <article class="panel">
@@ -42,7 +43,7 @@
           <div><span class="k">Hash algo</span><span class="v mono"><%= manifest.hash_algo %></span></div>
         </div>
 
-        <% if (manifest.signing) { %>
+        <% if (manifest.signing && publicKey) { %>
           <div class="sign-block">
             <div class="badge good">Signature present</div>
             <p class="muted small">Key: <span class="mono"><%= manifest.signing.key_id %></span></p>
@@ -72,7 +73,6 @@
     try{
       const m = <%- JSON.stringify(manifest) %>;
       const pub = '<%= publicKey %>';
-      if(!m.signing){ msg.textContent = 'No signature present.'; return; }
       const enc = new TextEncoder();
       const message = enc.encode(JSON.stringify({ files: m.files, created_utc: m.created_utc, ruleset_id: m.ruleset_id }));
       const sig = Uint8Array.from(atob(m.signing.signature), c=>c.charCodeAt(0));
