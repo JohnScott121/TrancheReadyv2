@@ -75,4 +75,44 @@ h1{font-size:var(--fs-1);letter-spacing:-.02em;margin:.2em 0 .3em} h2{font-size:
 .progress .bar{height:100%; width:0%; background:linear-gradient(90deg, var(--brandA), var(--brandB)); transition:width 220ms ease}
 
 /* Skeleton */
-.skeleton{height:220px; border-radius:12px; b
+.skeleton{height:220px; border-radius:12px; background:linear-gradient(100deg, color-mix(in srgb, var(--bg-alt) 70%, transparent) 20%, color-mix(in srgb, var(--line) 30%, transparent) 40%, color-mix(in srgb, var(--bg-alt) 70%, transparent) 60%); background-size:200% 100%; animation:shimmer 1.2s infinite}
+@keyframes shimmer{to{background-position:-200% 0}}
+
+/* Table + badges */
+.table-wrap{margin-top:10px; border:1px solid var(--line); border-radius:14px; overflow:hidden}
+.table{width:100%; border-collapse:collapse; font-size:.98rem}
+.table thead{background:var(--bg-alt)} .table th,.table td{padding:12px 14px; border-bottom:1px solid var(--line); vertical-align:top}
+.table tr:last-child td{border-bottom:none}
+.badge{display:inline-flex; align-items:center; gap:6px; padding:4px 10px; border-radius:999px; font-weight:800; font-size:.88rem; letter-spacing:.2px}
+.badge.high{background:#FCE8E8; color:#7B1E1E; border:1px solid #F3C4C4}
+.badge.med{background:#FFF6E5; color:#7A4B00; border:1px solid #FFE1A9}
+.badge.low{background:#E9F6EF; color:#175B34; border:1px solid #CBE8D6}
+.badge.good{background:#E9F5FF; color:#0A3A7A; border:1px solid #CFE6FF}
+.badge.warn{background:#FFF1E5; color:#7A3A0A; border:1px solid #FFD8B0}
+.reason-list{display:grid; gap:6px; margin-top:6px}
+.reason{display:flex; gap:8px; align-items:flex-start}
+.tag{display:inline-flex; align-items:center; padding:2px 8px; border-radius:999px; border:1px solid var(--line); color:var(--muted); font-size:.82rem}
+
+/* Summary */
+.summary-row{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px; border-radius:12px; border:1px solid var(--line); background:var(--bg-alt)}
+.summary-actions{display:flex; gap:8px; flex-wrap:wrap}
+
+/* Pre/code & verify bits */
+.pre{white-space:pre-wrap; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; background:var(--bg-alt); padding:12px; border-radius:10px; border:1px solid var(--line); max-height:420px; overflow:auto}
+.hash{display:block; margin-top:6px; word-break:break-all}
+.kv{display:grid; gap:8px}.kv .k{color:var(--muted); margin-right:8px}.kv .v{font-weight:700}
+.file-list{list-style:none; margin:0; padding:0; display:grid; gap:10px}
+.file-list li{padding:10px 12px; border:1px solid var(--line); border-radius:12px; background:var(--bg-alt)}
+
+/* Toast */
+.toast{position:fixed; left:50%; bottom:24px; transform:translateX(-50%) translateY(20px); opacity:0; background:var(--panel); color:var(--ink); border:1px solid var(--line); padding:10px 14px; border-radius:12px; box-shadow:var(--shadow); transition:opacity var(--t), transform var(--t); z-index:60}
+.toast.show{opacity:1; transform:translateX(-50%) translateY(0)}
+
+/* Focus + spinner */
+:focus-visible{outline:2px solid var(--brandA); outline-offset:3px; border-radius:6px}
+.btn-spinner{width:0; height:0; border:2px solid transparent; border-top-color:rgba(255,255,255,.9); border-radius:50%; margin-right:0; transition:margin-right var(--t), width var(--t), height var(--t)}
+.btn.loading .btn-spinner{width:16px; height:16px; margin-right:8px; animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Screen-reader only caption */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
