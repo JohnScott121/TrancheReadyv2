@@ -1,0 +1,77 @@
+openapi: 3.0.3
+info:
+  title: TrancheReady App API
+  version: 1.1.0
+servers:
+  - url: /
+paths:
+  /healthz:
+    get:
+      summary: Liveness probe
+      responses: { "200": { description: OK } }
+  /api/status:
+    get:
+      summary: Readiness & simple stats
+      responses: { "200": { description: OK } }
+  /api/version:
+    get:
+      summary: App & ruleset version
+      responses: { "200": { description: OK } }
+  /api/templates:
+    get:
+      summary: Download CSV templates
+      parameters:
+        - in: query
+          name: name
+          schema: { type: string, enum: [clients, transactions] }
+          required: true
+      responses:
+        "200": { description: CSV template }
+  /api/validate:
+    post:
+      summary: Validate CSV headers/shape without generating a pack
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                clients: { type: string, format: binary }
+                transactions: { type: string, format: binary }
+      responses:
+        "200": { description: Validation results }
+  /upload:
+    post:
+      summary: Upload clients & transactions; returns risk + links
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                clients: { type: string, format: binary }
+                transactions: { type: string, format: binary }
+      responses:
+        "200": { description: Evidence links and risk }
+  /verify/{token}:
+    get:
+      summary: Read-only verify manifest page (HTML)
+      parameters:
+        - in: path
+          name: token
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: HTML }
+  /download/{token}:
+    get:
+      summary: Download the evidence ZIP
+      parameters:
+        - in: path
+          name: token
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: ZIP }
