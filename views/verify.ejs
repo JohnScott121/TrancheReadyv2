@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Verify — TrancheReady</title>
+  <link rel="stylesheet" href="/public/style.css">
+</head>
+<body>
+<main class="app-main">
+  <section class="card">
+    <h2>Evidence manifest</h2>
+    <p>Hashes and (optional) signature are shown below.</p>
+    <pre class="pre"><%= JSON.stringify(manifest, null, 2) %></pre>
+    <% if (publicKey) { %>
+      <details>
+        <summary>Signature check (client-side)</summary>
+        <p>We verify the Ed25519 signature over the file list + timestamp using the public key below.</p>
+        <pre class="pre">PUBLIC KEY (base64): <%= publicKey %></pre>
+        <button class="btn" id="verifyBtn">Verify signature</button>
+        <p id="verifyMsg" class="muted"></p>
+      </details>
+    <% } %>
+  </section>
+</main>
+<script>
+(async function(){
+  const btn = document.getElementById('verifyBtn');
+  if(!btn) return;
+  btn.addEventListener('click', async ()=>{
+    const msg = document.getElementById('verifyMsg');
+    msg.textContent = 'Verifying…';
+    try{
+      const pub = '<%= publicKey %>';
+      const m = <%- JSON.stringify(manifest) %>;
+      if(!m.signing){ msg.textContent = 'No signature present.'; return; }
+      const enc = new TextEncoder();
+      const message = enc.encode(JSON.stringify({ files: m.files, created_utc: m.created_utc, ruleset_id: m.ruleset_id }));
+      const sig = Uint8Array.from(atob(m.signing.signature), c=>c.charCodeAt(0));
+      const key = Uint8Array.from(atob(pub), c=>c.charCodeAt(0));
+      const ok = await window.crypto.subtle.verify(
+        { name: 'Ed25519' },
+        await window.crypto.subtle.importKey('raw', key, {name:'Ed25519'}, false, ['verify']),
+        sig,
+        message
+      );
+      msg.textContent = ok ? '✔ Signature valid' : '✖ Signature invalid';
+    }catch(e){ msg.textContent = 'Verification failed: ' + e.message; }
+  });
+})();
+</script>
+</body>
+</html>
