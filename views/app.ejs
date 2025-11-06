@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
   <title>TrancheReady — Evidence App</title>
-  <link rel="stylesheet" href="/public/style.css">
   <meta name="theme-color" content="#FFFFFF" id="theme-color">
+  <link rel="icon" href="/public/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/public/style.css">
 </head>
 <body>
 <header class="glass-nav">
@@ -15,99 +16,25 @@
     </a>
     <nav class="nav-links" aria-label="Primary">
       <a href="/healthz" class="link-muted">Health</a>
-      <a href="/api/docs" class="link-muted" hidden>Docs</a>
     </nav>
     <div class="nav-actions">
       <button id="modeToggle" class="btn icon" aria-label="Toggle theme">
         <svg viewBox="0 0 24 24" class="i"><path d="M12 3a1 1 0 0 1 1 1v1.05a7 7 0 1 1-7.05 7.05H5a1 1 0 1 1 0-2h.95A7 7 0 0 1 12 3Z"/></svg>
       </button>
-      <a class="btn ghost" href="/">App</a>
     </div>
   </div>
 </header>
 
 <main class="container page">
   <section class="hero">
-    <div class="hero-copy">
-      <h1>CSV in → Signed ZIP out</h1>
-      <p class="lead">Upload <strong>Clients.csv</strong> and <strong>Transactions.csv</strong>. Get explainable risk, monitoring cases, and a signed evidence pack with a verify link.</p>
-    </div>
+    <h1>CSV in → Signed ZIP out</h1>
+    <p class="lead">Upload <strong>Clients.csv</strong> and <strong>Transactions.csv</strong>. Get explainable risk, monitoring cases, and a signed evidence pack with a verify link.</p>
   </section>
 
   <section class="grid two">
     <article class="card">
-      <h2 class="card-title">Upload evidence inputs</h2>
-      <p class="muted">Drag and drop the two CSVs below, or click to browse. Files are processed in memory only.</p>
+      <h2 class="card-title">Upload inputs</h2>
+      <p class="muted">Drag & drop both CSVs, or use the file pickers. Files are processed in memory.</p>
 
       <form id="uform" class="uform" aria-describedby="uformHelp">
-        <div id="drop" class="drop" role="button" tabindex="0" aria-label="Drop CSV files here">
-          <div class="drop-inner">
-            <svg viewBox="0 0 24 24" class="i-xl"><path d="M12 16v-8m0 0l-4 4m4-4l4 4M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
-            <div>Drop <strong>Clients.csv</strong> and <strong>Transactions.csv</strong></div>
-            <small class="muted">…or click to choose files</small>
-          </div>
-          <input required type="file" name="clients" accept=".csv" aria-label="Clients.csv">
-          <input required type="file" name="transactions" accept=".csv" aria-label="Transactions.csv">
-        </div>
-
-        <div class="inputs">
-          <label class="file-row">
-            <span>Clients.csv</span>
-            <input required type="file" name="clients" accept=".csv">
-          </label>
-          <label class="file-row">
-            <span>Transactions.csv</span>
-            <input required type="file" name="transactions" accept=".csv">
-          </label>
-        </div>
-
-        <div class="actions">
-          <button class="btn primary" type="submit">
-            <span class="btn-spinner" aria-hidden="true"></span>
-            Process
-          </button>
-          <a class="btn ghost" href="/api/templates?name=clients">Clients template</a>
-          <a class="btn ghost" href="/api/templates?name=transactions">Transactions template</a>
-        </div>
-        <p id="uformHelp" class="muted">Tip: You can pre-check formatting with <code>/api/validate</code>.</p>
-        <div id="progress" class="progress" hidden>
-          <div class="bar" style="width:0%"></div>
-        </div>
-      </form>
-    </article>
-
-    <article class="card">
-      <h2 class="card-title">Results</h2>
-      <div id="skeleton" class="skeleton" hidden></div>
-
-      <div id="summary" class="summary" hidden>
-        <div class="summary-row">
-          <div>
-            <div class="label">Verify link</div>
-            <div class="mono" id="verifyUrl">—</div>
-          </div>
-          <div class="summary-actions">
-            <button class="btn small" id="copyVerify">Copy</button>
-            <a class="btn secondary" id="openVerify" target="_blank" rel="noopener">Open</a>
-            <a class="btn primary" id="downloadZip">Download ZIP</a>
-          </div>
-        </div>
-      </div>
-
-      <div id="riskWrap" class="table-wrap" hidden>
-        <table class="table">
-          <thead>
-            <tr><th>Client</th><th>Band</th><th>Score</th><th>Reasons</th></tr>
-          </thead>
-          <tbody id="riskBody"></tbody>
-        </table>
-      </div>
-    </article>
-  </section>
-</main>
-
-<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
-
-<script src="/public/app.js" defer></script>
-</body>
-</html>
+        <div id="drop" class="drop" tabindex="0" role="button" aria-l
